@@ -49,18 +49,10 @@ public class CommonSteps {
         return null;
     }
 
-    @Then("send key {string} to {string}")
-    public void sendKeyTo(String value, String target) {
+    @And("send key {string} to {string}")
+    public void sendKeyTo(String keyParam, String target) {
         WebElement foundElement = driver.findElement(getByObject(target));
-        foundElement.sendKeys(getKey(value));
-    }
-
-    private CharSequence getKey(String value) {
-        if (value.equals("KEY_ENTER")) {
-            return Keys.ENTER;
-        }
-
-        return null;
+        foundElement.sendKeys(Keys.valueOf(keyParam));
     }
 
     @Then("assert element {string} present")
@@ -82,4 +74,5 @@ public class CommonSteps {
         String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
         assertTrue(message, elementText.contains(text));
     }
+
 }
