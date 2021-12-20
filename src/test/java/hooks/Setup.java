@@ -36,7 +36,16 @@ public class Setup {
     }
 
     private void setSystemPaths() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/macos/m1/chromedriver4638");
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/macos/m1/geckodriverAarch64");
+        String os = System.getProperty("os.name");
+
+        if (os.contains("Mac")) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/macos/m1/chromedriver4638");
+            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/macos/m1/geckodriverAarch64");
+        }
+
+        if (os.contains("Windows")) {
+            System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/win/geckodriver.exe");
+        }
+
     }
 }
