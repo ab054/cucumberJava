@@ -44,6 +44,7 @@ public class Setup {
         }
 
         if (os.contains("Windows")) {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/win/chromedriver.exe");
             System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/win/geckodriver.exe");
         }
 
