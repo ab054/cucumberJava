@@ -18,7 +18,7 @@ public class Setup {
 
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "firefox";
+        if (browser == null) browser = "chrome";
 
         switch (browser) {
             case "chrome":
@@ -39,7 +39,7 @@ public class Setup {
         String os = System.getProperty("os.name");
 
         if (os.contains("Mac")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/macos/m1/chromedriver4638");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/macos/m1/chromedriver4664");
             System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/macos/m1/geckodriverAarch64");
         }
 

@@ -1,9 +1,8 @@
 Feature: Google Search
 
-  @home_page @home_page_display
   Scenario Outline: Verify amount of results is sufficient
-    Given user navigates to Google search page
-    When type and submit query "<query>"
+    Given a user navigates to Google's main page
+    When type "<query>" and submit
     Then amount of results is greater than "<numberOfResults>"
 
     Examples:

@@ -12,14 +12,13 @@ public class MainPageSteps {
         mainPage = new MainPage();
     }
 
-    @Given("user navigates to Google search page")
-    public void userNavigatesToGoogleSearchPage() {
-        mainPage.open();
-    }
-
-    @When("type and submit query {string}")
+    @When("type {string} and submit")
     public void typeAndSubmitQuery(String query) {
         mainPage.typeQueryAndSubmit(query);
     }
 
+    @Given("a user navigates to Google's main page")
+    public void aUserNavigatesToGoogleSMainPage() {
+        mainPage.open();
+    }
 }
