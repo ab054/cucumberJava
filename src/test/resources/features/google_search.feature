@@ -1,4 +1,4 @@
-Feature: Home page
+Feature: Google Search
 
   @home_page @home_page_display
   Scenario Outline: Verify amount of results is sufficient

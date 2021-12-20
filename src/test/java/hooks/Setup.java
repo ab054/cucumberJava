@@ -12,14 +12,14 @@ public class Setup {
 
     @Before
     public void setWebDriver() {
+        setSystemPaths();
+        initBrowser();
+    }
 
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/macos/m1/chromedriver4638");
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/macos/m1/geckodriverAarch64");
-
+    private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) {
-            browser = "firefox";
-        }
+        if (browser == null) browser = "firefox";
+
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -33,5 +33,10 @@ public class Setup {
             default:
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
         }
+    }
+
+    private void setSystemPaths() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/macos/m1/chromedriver4638");
+        System.setProperty("webdriver.gecko.driver", "src/test/resources/macos/m1/geckodriverAarch64");
     }
 }

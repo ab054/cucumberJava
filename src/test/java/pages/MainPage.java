@@ -7,7 +7,7 @@ public class MainPage extends BasePage {
 
     By searchInput = By.name("q");
 
-    public void navigate() {
+    public void open() {
         driver.get("https://google.com/");
     }
 
