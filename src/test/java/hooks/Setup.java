@@ -39,7 +39,7 @@ public class Setup {
         String os = System.getProperty("os.name");
 
         if (os.contains("Mac")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/macos/m1/chromedriver4664");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/macos/m1/chromedriver98");
             System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/macos/m1/geckodriverAarch64");
         }
 

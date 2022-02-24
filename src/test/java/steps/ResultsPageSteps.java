@@ -20,11 +20,9 @@ public class ResultsPageSteps {
         Assert.assertTrue("amount of result is less than " + testExpectedNumber, actualNumberOfResults > testExpectedNumber);
     }
 
-    @Then("amount of results is greater than {string}")
-    public void amountOfResultsIsGreaterThan(String number) {
+    @Then("amount of results is greater than {int}")
+    public void amountOfResultsIsGreaterThan(Integer expectedNumber) {
         int actualNumberOfResults = resultsPage.getNumberOfResults();
-
-        int testExpectedNumber = Integer.parseInt(number);
-        Assert.assertTrue("amount of result is less than " + testExpectedNumber, actualNumberOfResults > testExpectedNumber);
+        Assert.assertTrue("amount of result is less than " + expectedNumber, actualNumberOfResults > expectedNumber);
     }
 }
