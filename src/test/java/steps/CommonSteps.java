@@ -4,6 +4,7 @@ import hooks.Setup;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +45,15 @@ public class CommonSteps {
         } else if (target.startsWith("id")) {
             String locatorValue = target.split("=")[1];
             return By.id(locatorValue);
+        } else if (target.startsWith("linkText")) {
+            String locatorValue = target.split("=")[1];
+            return By.linkText(locatorValue);
+        } else if (target.startsWith("xpath")) {
+            String locatorValue = target.substring(6);
+            return By.xpath(locatorValue);
+        } else if (target.startsWith("css")) {
+            String locatorValue = target.split("=")[1];
+            return By.cssSelector(locatorValue);
         }
 
         return null;
@@ -55,10 +65,10 @@ public class CommonSteps {
         foundElement.sendKeys(Keys.valueOf(keyParam));
     }
 
-    @Then("assert element {string} present")
-    public void assertElementPresent(String locator) {
-        WebElement foundElement = driver.findElement(getByObject(locator));
-        assert (foundElement.isDisplayed());
+    @When("click to {string}")
+    public void clickTo(String target) {
+        WebElement foundElement = driver.findElement(getByObject(target));
+        foundElement.click();
     }
 
     @And("wait for {string} is visible")
@@ -75,4 +85,9 @@ public class CommonSteps {
         assertTrue(message, elementText.contains(text));
     }
 
+    @Then("assert element {string} present")
+    public void assertElementStringPresent(String target) {
+        WebElement foundElement = driver.findElement(getByObject(target));
+        assertTrue(foundElement.isDisplayed());
+    }
 }
