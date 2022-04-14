@@ -1,11 +1,11 @@
-Feature: UI Search
+Feature: Authentication Form
 
-  User should be able to type any text as a query and receive reasonable amount of results
+  User should be able to login with right credentials, wrongs credentials should not be accepted
 
 
-  Rule: Google search should return results
+  Rule: successfully authorized user should see welcome message
 
-    Scenario: Search works
+    Scenario: correct credentials are accepted
       Given open "https://the-internet.herokuapp.com/"
       And click to "linkText=Form Authentication"
       And type "tomsmith" in "id=username"
@@ -13,7 +13,7 @@ Feature: UI Search
       When click to "xpath=//form[@id='login']/button/i"
       Then assert text "Secure Area" presented in "css=h2"
 
-    Scenario: Wrong credentials don't work
+    Scenario: wrong credentials are not accepted
       Given open "https://the-internet.herokuapp.com/"
       And click to "linkText=Form Authentication"
       And type "tomsmithadfasdf" in "id=username"
@@ -21,7 +21,7 @@ Feature: UI Search
       When click to "xpath=//form[@id='login']/button/i"
       Then assert element "xpath=//*[@id='flash']" present
 
-    Scenario: Wrong credentials numbers and password don't work
+    Scenario: wrong credentials (number) are not accepted
       Given open "https://the-internet.herokuapp.com/"
       And click to "linkText=Form Authentication"
       And type "12312312312" in "id=username"
