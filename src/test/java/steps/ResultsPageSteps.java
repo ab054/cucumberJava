@@ -17,12 +17,14 @@ public class ResultsPageSteps {
         int actualNumberOfResults = resultsPage.getNumberOfResults();
 
         int testExpectedNumber = 10000;
-        Assert.assertTrue("amount of result is less than " + testExpectedNumber, actualNumberOfResults > testExpectedNumber);
+        boolean condition = actualNumberOfResults > testExpectedNumber;
+        Assert.assertTrue("amount of result is less than " + testExpectedNumber, condition);
     }
 
     @Then("amount of results is greater than {int}")
     public void amountOfResultsIsGreaterThan(Integer expectedNumber) {
         int actualNumberOfResults = resultsPage.getNumberOfResults();
-        Assert.assertTrue("amount of result is less than " + expectedNumber, actualNumberOfResults > expectedNumber);
+        boolean condition = actualNumberOfResults > expectedNumber;
+        Assert.assertTrue("amount of result is less than " + expectedNumber, condition);
     }
 }

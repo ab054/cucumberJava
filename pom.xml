@@ -39,6 +39,14 @@
             <artifactId>cucumber-java</artifactId>
             <version>7.1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <properties>
