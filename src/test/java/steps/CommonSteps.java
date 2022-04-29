@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CommonSteps {
 
-    private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(5);
+    private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
     WebDriverWait wait;
     WebDriver driver;
 
@@ -89,5 +90,40 @@ public class CommonSteps {
     public void assertElementStringPresent(String target) {
         WebElement foundElement = driver.findElement(getByObject(target));
         assertTrue(foundElement.isDisplayed());
+    }
+
+    @Then("assert that {string} checked")
+    public void assert_that_checked(String locator) {
+        WebElement checkbox = driver.findElement(getByObject(locator));
+        String isChecked = checkbox.getAttribute("checked");
+        assertNotNull(isChecked);
+    }
+
+    @And("assert that {string} not checked")
+    public void assertThatNotChecked(String locator) {
+        WebElement checkbox = driver.findElement(getByObject(locator));
+        String isChecked = checkbox.getAttribute("checked");
+        assertNull(isChecked);
+    }
+
+    @And("click to {string} {int} times")
+    public void clickToTimes(String locator, int times) {
+        WebElement element = driver.findElement(getByObject(locator));
+
+        for (int i = 0; i < times; i++) {
+            element.click();
+        }
+    }
+
+    @And("checkbox {string} should be selected {string}")
+    public void checkboxShouldBeSelected(String locator, String booleanParam) {
+        WebElement element = driver.findElement(getByObject(locator));
+
+        if (booleanParam.equalsIgnoreCase("true")) {
+            Assert.assertTrue("element was not selected", element.isSelected());
+        } else {
+            Assert.assertFalse("element was selected", element.isSelected());
+        }
+
     }
 }
