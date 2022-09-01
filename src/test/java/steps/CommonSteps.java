@@ -6,10 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -146,5 +143,18 @@ public class CommonSteps {
         String selectedText = selected.getText();
 
         assertEquals(selectedText, visibleText);
+    }
+
+    @When("set value of {string} to {string}")
+    public void setValueOfTo(String locator, String value) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        String script = "document.getElementById('" + locator + "').setAttribute('value', '" + value + "')";
+        jse.executeScript(script);
+    }
+
+    @When("submit {string} input")
+    public void submitInput(String locator) {
+        WebElement element = driver.findElement(getByObject(locator));
+        element.submit();
     }
 }

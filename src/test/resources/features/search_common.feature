@@ -13,7 +13,6 @@ Feature: UI Search
       And wait for "id=result-stats" is visible
       Then assert text "results" presented in "id=result-stats"
 
-
     Scenario Outline: Search works
       Given open "https://www.google.com"
       When type "<query>" in "name=q"

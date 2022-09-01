@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class Setup {
 
     public static WebDriver driver;
@@ -23,6 +25,7 @@ public class Setup {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
