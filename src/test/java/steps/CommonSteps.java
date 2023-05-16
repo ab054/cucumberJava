@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -70,6 +71,23 @@ public class CommonSteps {
         foundElement.click();
     }
 
+    @And("rightClick to {string}")
+    public void rightClickTo(String target) {
+        Actions action = new Actions(driver);
+        WebElement foundElement = driver.findElement(getByObject(target));
+        action.contextClick(foundElement).perform();
+    }
+
+
+    @And("click to {string} {int} times")
+    public void clickToTimes(String locator, int times) {
+        WebElement element = driver.findElement(getByObject(locator));
+
+        for (int i = 0; i < times; i++) {
+            element.click();
+        }
+    }
+
     @And("wait for {string} is visible")
     public void waitForIsVisible(String target) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
@@ -104,14 +122,7 @@ public class CommonSteps {
         assertNull(isChecked);
     }
 
-    @And("click to {string} {int} times")
-    public void clickToTimes(String locator, int times) {
-        WebElement element = driver.findElement(getByObject(locator));
 
-        for (int i = 0; i < times; i++) {
-            element.click();
-        }
-    }
 
     @And("checkbox {string} should be selected {string}")
     public void checkboxShouldBeSelected(String locator, String booleanParam) {

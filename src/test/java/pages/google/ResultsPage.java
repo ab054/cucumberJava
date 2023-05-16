@@ -1,7 +1,8 @@
-package pages;
+package pages.google;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 import tools.CommonTools;
 
 public class ResultsPage extends BasePage {

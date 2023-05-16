@@ -1,8 +1,8 @@
-package steps;
+package steps.google;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import pages.MainPage;
+import pages.google.MainPage;
 
 public class MainPageSteps {
 

@@ -7,10 +7,10 @@ Feature: Amazon Search
       And type "<searchQuery>" in "id=twotabsearchtextbox"
       When send key "ENTER" to "id=twotabsearchtextbox"
       Then assert element "xpath=//*[@id='search']/span/div/h1/div/div[1]/div/div/span[1]" present
-      And assert text "results" presented in "xpath=//*[@id='search']/span/div/h1/div/div[1]/div/div/span[1]"
+      And assert text "<results>" presented in "xpath=//*[@id='search']/span/div/h1/div/div[1]/div/div/span[1]"
 
       Examples:
-        | searchQuery |
-        | 4k monitor  |
-        | iphone 13   |
-        | cars        |
+        | searchQuery | results |
+        | 4k monitor  | results |
+        | iphone 13   | results |
+        | cars        | results |

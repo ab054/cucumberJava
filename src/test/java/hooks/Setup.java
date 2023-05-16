@@ -1,14 +1,17 @@
 package hooks;
 
 import io.cucumber.java.Before;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Setup {
+
+    public static Logger logger = LoggerFactory.getLogger(Setup.class);
 
     public static WebDriver driver;
 
@@ -19,16 +22,18 @@ public class Setup {
 
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "chrome";
+        if (browser == null) browser = "firefox";
 
         switch (browser) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                ChromeOptions options = new ChromeOptions();
+                options.setPageLoadStrategy(PageLoadStrategy.NONE);
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-network-throttling");
+                //options.addArguments("--headless");
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
                 break;

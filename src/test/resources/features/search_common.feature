@@ -18,9 +18,9 @@ Feature: UI Search
       When type "<query>" in "name=q"
       And send key "ENTER" to "name=q"
       Then wait for "id=result-stats" is visible
-      And assert text "results" presented in "id=result-stats"
+      And assert text "<text>" presented in "id=result-stats"
 
       Examples:
-        | query                   |
-        | Portnov Computer School |
-        | Portnov School          |
+        | query                   | text    |
+        | Portnov Computer School | results |
+        | Portnov School          | result2 |

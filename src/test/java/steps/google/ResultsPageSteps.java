@@ -1,8 +1,8 @@
-package steps;
+package steps.google;
 
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import pages.ResultsPage;
+import pages.google.ResultsPage;
 
 public class ResultsPageSteps {
 
