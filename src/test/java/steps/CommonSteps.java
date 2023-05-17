@@ -65,8 +65,17 @@ public class CommonSteps {
         foundElement.sendKeys(Keys.valueOf(keyParam));
     }
 
+    private static void sleep(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @When("click to {string}")
     public void clickTo(String target) {
+        sleep(500);
         WebElement foundElement = driver.findElement(getByObject(target));
         foundElement.click();
     }
@@ -91,6 +100,7 @@ public class CommonSteps {
     @And("wait for {string} is visible")
     public void waitForIsVisible(String target) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
     }
 
     @Then("assert text {string} presented in {string}")
@@ -148,11 +158,8 @@ public class CommonSteps {
     public void optionIsSelectedInDropdown(String visibleText, String locator) {
         WebElement element = driver.findElement(getByObject(locator));
         Select select = new Select(element);
-
         WebElement selected = select.getFirstSelectedOption();
-
         String selectedText = selected.getText();
-
         assertEquals(selectedText, visibleText);
     }
 
