@@ -38,6 +38,15 @@ public class CommonSteps {
         foundElement.sendKeys(value);
     }
 
+    @When("type {string} in {string} for {int} times")
+    public void typeInForTimes(String value, String target, int times) {
+        WebElement foundElement = driver.findElement(getByObject(target));
+
+        for (int i = 0; i < times; i++) {
+            foundElement.sendKeys(value);
+        }
+    }
+
     private By getByObject(String target) {
         if (target.startsWith("name")) {
             String locatorValue = target.split("=")[1];
@@ -101,6 +110,13 @@ public class CommonSteps {
     public void waitForIsVisible(String target) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
         wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
+    }
+
+    @When("wait for {string} is visible for {int} millis")
+    public void wait_for_is_visible_for_sec(String target, Integer amountOfMillis) {
+        WebDriverWait localWait = new WebDriverWait(driver, Duration.ofMillis(amountOfMillis));
+        localWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        localWait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
     }
 
     @Then("assert text {string} presented in {string}")
@@ -174,5 +190,14 @@ public class CommonSteps {
     public void submitInput(String locator) {
         WebElement element = driver.findElement(getByObject(locator));
         element.submit();
+    }
+
+    @Then("sleep for {int} seconds")
+    public void sleepForSecond(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

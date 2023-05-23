@@ -8,10 +8,11 @@ Feature: UI Search
     @search
     Scenario: Search works
       Given open "https://www.google.com"
-      When type "Portnov Computer School" in "name=q"
+      When type "School" in "name=q" for 5 times
       And send key "ENTER" to "name=q"
-      And wait for "id=result-stats" is visible
+      And wait for "id=result-stats" is visible for 1 millis
       Then assert text "results" presented in "id=result-stats"
+      Then sleep for 10 seconds
 
     Scenario Outline: Search works
       Given open "https://www.google.com"

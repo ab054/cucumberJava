@@ -40,7 +40,6 @@ public class Setup {
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
-                driver.manage().window().maximize();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 break;
             default:
