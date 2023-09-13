@@ -3,11 +3,11 @@ package steps.lifetwig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.lifetwig.LTLoginPage;
+import pages.openCircle.OpenCircleLoginPage;
 
-public class LTLoginSteps {
+public class OpenCircleLoginSteps {
 
-    LTLoginPage loginPage = new LTLoginPage();
+    OpenCircleLoginPage loginPage = new OpenCircleLoginPage();
 
     @Given("user opens main page")
     public void userOpensMainPage() {

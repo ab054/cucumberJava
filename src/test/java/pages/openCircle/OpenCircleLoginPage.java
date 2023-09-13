@@ -1,8 +1,8 @@
-package pages.lifetwig;
+package pages.openCircle;
 
 import pages.BasePage;
 
-public class LTLoginPage extends BasePage {
+public class OpenCircleLoginPage extends BasePage {
     private static final String LOGIN_PAGE = "http://opencircle.us/login";
     private static final String UNAUTHORIZED_LOGIN = "ab@gmail.com";
     private static final String LOGIN_INPUT = "id=email";
