@@ -20,7 +20,7 @@ public class Setup {
 
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "firefox";
+        if (browser == null) browser = "chrome";
 
         switch (browser) {
             case "chrome":
@@ -37,6 +37,7 @@ public class Setup {
                 options.addArguments("--disable-extensions");
                 //options.addArguments("--headless");
                 driver = new ChromeDriver(options);
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 break;
             case "firefox":
                 driver = new FirefoxDriver();

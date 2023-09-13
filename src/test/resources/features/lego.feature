@@ -8,8 +8,8 @@ Feature: Lego Search
     @search
     Scenario: Search works
       Given open "https://www.lego.com/en-us"
-      And wait for "xpath=//*[@id='__next']/div[5]/div/div/div[1]/div[1]/div/button" is visible
-      When click to "xpath=//*[@id='__next']/div[5]/div/div/div[1]/div[1]/div/button"
+      And wait for "xpath=//button[@type='submit'][text()='Continue']" is visible
+      When click to "xpath=//button[@type='submit'][text()='Continue']"
       And wait for "xpath=/html/body/div[6]/div/aside/div/div/div[3]/div[1]/button[2]" is visible
       When click to "xpath=/html/body/div[6]/div/aside/div/div/div[3]/div[1]/button[2]"
       When click to "css=.MainBarstyles__OpenButton-sc-1cg7sjw-12 > .Icon__StyledSVG-lm07h6-0"

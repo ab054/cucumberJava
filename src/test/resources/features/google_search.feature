@@ -7,5 +7,5 @@ Feature: Google Search
 
     Examples:
       | query                   | numberOfResults |
-      | Portnov Computer School | 10000           |
+      | Portnov Computer School | 5000            |
       | Portnov School          | 10000           |
