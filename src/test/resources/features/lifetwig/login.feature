@@ -1,6 +1,6 @@
 Feature: Authentication Form
 
-  Scenario: clicking multiple times on the button
+  Scenario: existing user uses valid credentials
     Given open "https://www.lifetwig.com/login"
     Then type "demondomin7@gmail.com" in "id=login_email"
     And type "Saske_2600" in "id=login_password"
@@ -8,7 +8,7 @@ Feature: Authentication Form
     Then assert element "xpath=//a[contains(@href, '/user-profile')]" present
 
 
-  Scenario Outline: clicking multiple times on the button
+  Scenario Outline: existing user uses valid credentials
     Given open "https://www.lifetwig.com/login"
     Then type "<loginID>" in "id=login_email"
     And type "<password>" in "id=login_password"
