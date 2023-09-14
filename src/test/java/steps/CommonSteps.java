@@ -1,6 +1,7 @@
 package steps;
 
 import hooks.Setup;
+import hooks.Wait;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,12 +20,14 @@ import static org.junit.Assert.*;
 public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
-    WebDriverWait wait;
+    WebDriverWait webdriverWait;
+    Wait wait;
     WebDriver driver;
 
     public CommonSteps() {
         driver = Setup.driver;
-        wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+        webdriverWait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+        wait = new Wait(driver);
     }
 
     @Given("open {string}")
@@ -108,8 +111,8 @@ public class CommonSteps {
 
     @And("wait for {string} is visible")
     public void waitForIsVisible(String target) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
-        wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
+        webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        webdriverWait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
     }
 
     @When("wait for {string} is visible for {int} millis")
@@ -121,7 +124,7 @@ public class CommonSteps {
 
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
-        WebElement foundElement = wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        WebElement foundElement = webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
         String elementText = foundElement.getText();
         String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
         assertTrue(message, elementText.contains(text));
@@ -198,5 +201,10 @@ public class CommonSteps {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @And("wait until page is loaded")
+    public void waitUntilPageIsLoaded() {
+        wait.forLoading(10);
     }
 }
