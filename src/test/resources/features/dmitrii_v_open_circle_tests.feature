@@ -1,8 +1,9 @@
 # Author Dmitrii V
 
-  @openCircle
+@openCircle
 Feature: Open Circe
 
+  @openCircle
   Scenario: Open Circle album validation
     Given open login page
       # Authorized user sign in
@@ -11,6 +12,7 @@ Feature: Open Circe
     And user opens albums
     Then album is present in list
 
+  @openCircle
   Scenario: Open Circle create Topic
     Given open login page
     When type valid credentials
@@ -18,6 +20,7 @@ Feature: Open Circe
     And user creates topic
     Then create topic success message displayed
 
+  @openCircle
   Scenario: Open Circle delete Topic
     Given open login page
     When type valid credentials
@@ -25,6 +28,7 @@ Feature: Open Circe
     And user deletes topic
     Then confirmation message is displayed
 
+  @openCircle
   Scenario: Open Circle first and last names confirmation
     Given open login page
     When type valid credentials
@@ -32,6 +36,7 @@ Feature: Open Circe
     And open user profile
     Then first and last names are verified
 
+  @openCircle
   Scenario: Open Circle user logs out
     Given open login page
     When type valid credentials
@@ -40,6 +45,7 @@ Feature: Open Circe
     And user logs out
     Then login page is displayed
 
+  @openCircle
   Scenario: Open Circle user can not change password to less then 8 char
     Given open login page
       # Authorized user sign in
