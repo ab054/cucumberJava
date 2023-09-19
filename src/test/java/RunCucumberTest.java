@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"html:target/my-report.html"},
-        publish = false,
+        // publish = false,
         features = {"src/test/resources/features/dropdown.feature"},
         glue = {"/hooks", "/steps", "/support"},
         tags = "@openCircle"
