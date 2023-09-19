@@ -8,26 +8,23 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
-import java.util.HashMap;
 
 public class Setup {
 
     public static WebDriver driver;
-    public static HashMap<String, Object> context;
 
     @Before
     public void setWebDriver() {
         initBrowser();
-        context = new HashMap<>();
     }
 
     private void initBrowser() {
         String browser = System.getProperty("browser");
-        if (browser == null) browser = "firefox";
+        if (browser == null) browser = "chrome";
 
         switch (browser) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
                 ChromeOptions options = new ChromeOptions();
                 options.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 options.addArguments("--remote-allow-origins=*");

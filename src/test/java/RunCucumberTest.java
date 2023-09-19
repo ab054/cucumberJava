@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
         plugin = {"html:target/my-report.html"},
         publish = false,
         features = {"src/test/resources/features/dropdown.feature"},
-        glue = {"/hooks", "/steps", "/support"}
+        glue = {"/hooks", "/steps", "/support"},
+        tags = "@openCircle"
 )
 public class RunCucumberTest {
 }
