@@ -14,18 +14,21 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
 public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
+    public HashMap<String, Object> context;
     WebDriverWait webdriverWait;
     Wait wait;
     WebDriver driver;
 
     public CommonSteps() {
         driver = Setup.driver;
+        context = Setup.context;
         webdriverWait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
         wait = new Wait(driver);
     }
@@ -131,7 +134,8 @@ public class CommonSteps {
     }
 
     @Then("assert element {string} present")
-    public void assertElementStringPresent(String target) {
+    public void assertElementPresent(String target) {
+        wait.forElementToBeDisplayed(10, getByObject(target), target);
         WebElement foundElement = driver.findElement(getByObject(target));
         assertTrue(foundElement.isDisplayed());
     }

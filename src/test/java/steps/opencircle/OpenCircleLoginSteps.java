@@ -1,4 +1,4 @@
-package steps.lifetwig;
+package steps.opencircle;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

@@ -22,6 +22,6 @@ public class OpenCircleLoginPage extends BasePage {
     }
 
     public void assertErrorMessageInvalidPassword() {
-        steps.assertElementStringPresent(INVALID_PASSWORD_MESSAGE);
+        steps.assertElementPresent(INVALID_PASSWORD_MESSAGE);
     }
 }
