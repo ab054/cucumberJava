@@ -22,8 +22,8 @@ public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
     public HashMap<String, Object> context;
-    WebDriverWait webdriverWait;
-    Wait wait;
+    public WebDriverWait webdriverWait;
+    public Wait wait;
     WebDriver driver;
 
     public CommonSteps() {
@@ -209,6 +209,6 @@ public class CommonSteps {
 
     @And("wait until page is loaded")
     public void waitUntilPageIsLoaded() {
-        wait.forLoading(10);
+
     }
 }
