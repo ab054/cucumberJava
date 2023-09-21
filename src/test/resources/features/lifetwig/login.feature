@@ -5,7 +5,7 @@ Feature: Authentication Form
     Then type "demondomin7@gmail.com" in "id=login_email"
     And type "Saske_2600" in "id=login_password"
     And click to "xpath=//button[@type='submit']"
-    Then assert element "xpath=//a[contains(@href, '/user-profile')]" present
+    Then assert element "xpath=//a[contains(@href, '/user-profile123')]" present
 
 
   Scenario Outline: existing user uses valid credentials

@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.lifetwig.LTFeedPage;
 import pages.lifetwig.LTLoginPage;
+import pages.lifetwig.LTSecuritySettingsPage;
 import steps.CommonSteps;
 
 public class LTSecuritySettingsSteps {

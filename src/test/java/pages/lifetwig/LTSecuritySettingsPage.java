@@ -1,4 +1,4 @@
-package steps.lifetwig;
+package pages.lifetwig;
 
 import pages.BasePage;
 
