@@ -17,7 +17,7 @@ public class TearDown {
     @After
     public void quitDriver(Scenario scenario){
         if(scenario.isFailed()){
-           saveScreenshotsForScenario(scenario);
+            saveScreenshotsForScenario(scenario);
         }
         this.driver.quit();
     }

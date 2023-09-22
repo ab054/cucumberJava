@@ -1,6 +1,7 @@
 package steps;
 
 import hooks.Setup;
+import hooks.Wait;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.invoke.SwitchPoint;
 import java.time.Duration;
 
 import static org.junit.Assert.*;
@@ -19,12 +21,14 @@ import static org.junit.Assert.*;
 public class CommonSteps {
 
     private final Duration DEFAULT_WAIT_TIMEOUT = Duration.ofSeconds(25);
-    WebDriverWait wait;
+    public WebDriverWait webdriverWait;
+    public Wait wait;
     WebDriver driver;
 
     public CommonSteps() {
         driver = Setup.driver;
-        wait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+        webdriverWait = new WebDriverWait(driver, DEFAULT_WAIT_TIMEOUT);
+        wait = new Wait(driver);
     }
 
     @Given("open {string}")
@@ -35,8 +39,19 @@ public class CommonSteps {
     @Then("type {string} in {string}")
     public void typeIn(String value, String target) {
         WebElement foundElement = driver.findElement(getByObject(target));
-        foundElement.sendKeys(value);
+        switch (value) {
+            case "random_non_exist_email":
+                int number = (int) (Math.random()*101);
+                foundElement.sendKeys("test" + number + "@gmail.com");
+                break;
+            default:
+                foundElement.sendKeys(value);
+                break;
+        }
+
     }
+
+
 
     @When("type {string} in {string} for {int} times")
     public void typeInForTimes(String value, String target, int times) {
@@ -106,12 +121,6 @@ public class CommonSteps {
         }
     }
 
-    @And("wait for {string} is visible")
-    public void waitForIsVisible(String target) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
-        wait.until(ExpectedConditions.elementToBeClickable(getByObject(target)));
-    }
-
     @When("wait for {string} is visible for {int} millis")
     public void wait_for_is_visible_for_sec(String target, Integer amountOfMillis) {
         WebDriverWait localWait = new WebDriverWait(driver, Duration.ofMillis(amountOfMillis));
@@ -121,14 +130,15 @@ public class CommonSteps {
 
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
-        WebElement foundElement = wait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
+        WebElement foundElement = webdriverWait.until(ExpectedConditions.visibilityOfElementLocated(getByObject(target)));
         String elementText = foundElement.getText();
         String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
         assertTrue(message, elementText.contains(text));
     }
 
     @Then("assert element {string} present")
-    public void assertElementStringPresent(String target) {
+    public void assertElementPresent(String target) {
+        wait.forElementToBeDisplayed(10, getByObject(target), target);
         WebElement foundElement = driver.findElement(getByObject(target));
         assertTrue(foundElement.isDisplayed());
     }
